@@ -27,4 +27,4 @@ class SurepassHTTPClient(abc.ABC):
         except Exception as exc:
             logging.exception(exc)
             raise SurepassAPIException from exc
-        return response.json()
+        return response
