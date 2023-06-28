@@ -1,0 +1,2 @@
+class SurepassAPIException(Exception):
+    pass
