@@ -2,9 +2,9 @@
 Surepass Python SDK - Aadhaar, PAN, RC Validation APIs
 
 ## API Reference
-- (Aadhaar Verification API)[#aadhaar-verification-api]
-- (PAN Card Verification API)[#pan-card-verification-api]
-- (Vehicle RC Verification API)[#vehicle-rc-verification-api]
+- [Aadhaar Verification API](#aadhaar-verification-api)
+- [PAN Card Verification API](#pan-card-verification-api)
+- [Vehicle RC Verification API](#vehicle-rc-verification-api)
 
 ## Aadhaar Verification API
 The Aadhaar authentication API is an effective tool that has the capacity to provide efficient results regarding the originality of an Aadhaar card. Online Aadhar Card verification tool is simple to use and is extremely user friendly. All you need is the Aadhaar card details. Just enter it, and within a few seconds, the result will be on your screen. Since Aadhaar card is a must needed form of identity, it is highly advisable to verify them using Aadhaar Verification APIs.
