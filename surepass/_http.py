@@ -1,12 +1,11 @@
 import abc
 import logging
 import requests
-
 from .exceptions import SurepassAPIException
 
 
 class SurepassHTTPClient(abc.ABC):
-    API_BASE_URL = "https://kyc-api.surepass.io"
+    API_BASE_URL = "https://kyc-api.aadhaarkyc.io/api/v1"
 
     def __init__(self, client):
         self.client = client
