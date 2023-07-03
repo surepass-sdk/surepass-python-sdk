@@ -2,19 +2,19 @@ from pydantic import BaseModel
 
 
 class PartialAadhaarModel(BaseModel):
-    number: str
-    first_name: str
+    aadhaar_number: str
     age_range: str
+    client_id: str
 
 
 class AadhaarModel(PartialAadhaarModel):
-    address: str
     state: str
     gender: str
     last_digits: int
     is_mobile: bool
     remarks: str
     less_info: bool
+    last_digits: str
 
 
 class AadhaarVerificationOtpModel(BaseModel):
@@ -34,9 +34,6 @@ class AadhaarAddressModel(BaseModel):
     street: str
     house: str
     landmark: str
-
-
-
 
 
 class AadhaarVerificationModel(BaseModel):

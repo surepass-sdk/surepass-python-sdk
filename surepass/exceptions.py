@@ -2,5 +2,9 @@ class SurepassAPIException(Exception):
     pass
 
 
-class InvalidOtpException(Exception):
+class AuthorizationTokenExpiredException(SurepassAPIException):
+    pass
+
+
+class InvalidOtpException(SurepassAPIException):
     pass

@@ -1,7 +1,7 @@
 import abc
 import logging
 import requests
-from .exceptions import SurepassAPIException
+from .exceptions import SurepassAPIException, AuthorizationTokenExpiredException
 
 
 class SurepassHTTPClient(abc.ABC):
@@ -19,11 +19,15 @@ class SurepassHTTPClient(abc.ABC):
 
     def request(self, method, route, **kwargs):
         url = self.API_BASE_URL + route
-        headers = kwargs.pop("headers") or {}
+        headers = kwargs.pop("headers", None) or {}
         headers.update(self.headers)
         try:
             response = self.session.request(method, url, headers=headers, **kwargs)
         except Exception as exc:
             logging.exception(exc)
             raise SurepassAPIException from exc
+
+        if response.status_code == 401:
+            raise AuthorizationTokenExpiredException
+
         return response

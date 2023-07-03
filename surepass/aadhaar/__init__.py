@@ -1,7 +1,8 @@
 from .._http import SurepassHTTPClient
 from ..exceptions import InvalidOtpException
 from .exceptions import AadhaarInvalidException
-from .models import PartialAadhaarModel, AadhaarVerificationOtpModel, AadhaarVerificationModel, AadhaarAddressModel
+from .models import PartialAadhaarModel, AadhaarModel, AadhaarVerificationOtpModel, AadhaarVerificationModel, \
+    AadhaarAddressModel
 
 
 class AadhaarHTTPClient(SurepassHTTPClient):
@@ -13,13 +14,14 @@ class AadhaarHTTPClient(SurepassHTTPClient):
         if response.status_code == 422:
             raise AadhaarInvalidException
 
-        data = response.json()
-        aadhaar_model = PartialAadhaarModel(
-            number=aadhaar_number,
+        resp_data = response.json()
+        data = resp_data["data"]
+        aadhaar_model = AadhaarModel(
+            aadhaar_number=aadhaar_number,
             age_range=data["age_range"],
-            state=data["state"],
             client_id=data["client_id"],
-            mobile=data["is_mobile"],
+            state=data["state"],
+            is_mobile=data["is_mobile"],
             gender=data["gender"],
             last_digits=data["last_digits"],
             remarks=data["remarks"],
@@ -33,8 +35,8 @@ class AadhaarHTTPClient(SurepassHTTPClient):
 
         if response.status_code == 422:
             raise InvalidOtpException
-        data = response.json()
-        data = data["data"]
+        resp_data = response.json()
+        data = resp_data["data"]
         aadhaar_otp_model = AadhaarVerificationOtpModel(
             if_number=data["if_number"],
             otp_sent=data["otp_sent"],
@@ -51,8 +53,8 @@ class AadhaarHTTPClient(SurepassHTTPClient):
         response = self.request("POST", "/aadhaar-v2/submit-otp", json=payload)
         if response.status_code == 422:
             raise AadhaarInvalidException
-        data = response.json()
-        data = data["data"]
+        resp_data = response.json()
+        data = resp_data["data"]
         address = data["address"]
         aadhaar_verification_model = AadhaarVerificationModel(
             client_id=data["client_id"],
