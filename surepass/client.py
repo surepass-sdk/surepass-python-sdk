@@ -1,6 +1,6 @@
 from ._config import SurepassAPIConfig
 from .aadhaar import AadhaarHTTPClient
-from .RC import RCHTTPClient
+from .rc import RCHTTPClient
 
 
 class SurepassClient(object):
